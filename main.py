@@ -47,7 +47,7 @@ def main():
     
     os.makedirs("output", exist_ok=True)
     df.to_excel(output_path, index=False)
-    print(f"✅ Output saved to {output_path}")
+    print(f"Output saved to {output_path}")
 
 if __name__ == "__main__":
     main()
