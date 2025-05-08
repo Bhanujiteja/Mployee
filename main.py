@@ -31,20 +31,20 @@ def run_models_on_text(text):
     }
 
 def main():
-    print("📥 Loading data...")
+    print("Loading data...")
     df = load_data()
 
-    print("🚀 Running models...")
+    print("Running models...")
     results = []
     with ThreadPoolExecutor() as executor:
         for output in tqdm(executor.map(run_models_on_text, df["JD_Text"]), total=len(df)):
             results.append(output)
 
-    # Add model outputs to dataframe
+    
     for model_name in results[0].keys():
         df[model_name] = [r[model_name] for r in results]
 
-    # Save to Excel
+    
     os.makedirs("output", exist_ok=True)
     df.to_excel(output_path, index=False)
     print(f"✅ Output saved to {output_path}")
